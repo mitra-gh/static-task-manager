@@ -68,11 +68,17 @@ document.querySelectorAll("#filter-buttons button").forEach((btn) => {
 });
 
 const themeToggle = document.getElementById("theme-toggle");
+
+function applyTheme(theme) {
+  document.body.classList.toggle("dark", theme === "dark");
+  themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+}
+
 themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  themeToggle.textContent = document.body.classList.contains("dark")
-    ? "☀️"
-    : "🌙";
+  const theme = document.body.classList.contains("dark") ? "light" : "dark";
+  localStorage.setItem("theme", theme);
+  applyTheme(theme);
 });
 
+applyTheme(localStorage.getItem("theme") || "light");
 render();
