@@ -22,7 +22,16 @@ function render() {
       render();
     });
 
-    li.appendChild(span);
+    const btn = document.createElement("button");
+    btn.textContent = "✕";
+    btn.className = "delete-btn";
+    btn.addEventListener("click", () => {
+      tasks.splice(i, 1);
+      save();
+      render();
+    });
+
+    li.append(span, btn);
     list.appendChild(li);
   });
 }
