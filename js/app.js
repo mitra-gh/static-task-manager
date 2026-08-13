@@ -10,9 +10,19 @@ function save() {
 
 function render() {
   list.innerHTML = "";
-  tasks.forEach((task) => {
+  tasks.forEach((task, i) => {
     const li = document.createElement("li");
-    li.textContent = task.text;
+    li.className = task.done ? "done" : "";
+
+    const span = document.createElement("span");
+    span.textContent = task.text;
+    span.addEventListener("click", () => {
+      tasks[i].done = !tasks[i].done;
+      save();
+      render();
+    });
+
+    li.appendChild(span);
     list.appendChild(li);
   });
 }
