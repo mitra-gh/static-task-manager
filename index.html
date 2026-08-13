@@ -17,6 +17,12 @@
           required
         />
         <button type="submit">Add</button>
+        <input type="text" id="search-input" placeholder="Search tasks..." />
+        <div id="filter-buttons">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="active">Active</button>
+          <button data-filter="done">Done</button>
+        </div>
       </form>
       <ul id="task-list"></ul>
     </main>
