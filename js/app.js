@@ -4,6 +4,7 @@ const list = document.getElementById("task-list");
 const searchInput = document.getElementById("search-input");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let currentFilter = "all";
 
 searchInput.addEventListener("input", render);
 
@@ -18,6 +19,10 @@ function render() {
     if (query && !task.text.toLowerCase().includes(query)) {
       return;
     }
+
+    if (currentFilter === "active" && task.done) return;
+    if (currentFilter === "done" && !task.done) return;
+
     const li = document.createElement("li");
     li.className = task.done ? "done" : "";
 
@@ -49,6 +54,17 @@ form.addEventListener("submit", (e) => {
   input.value = "";
   save();
   render();
+});
+
+document.querySelectorAll("#filter-buttons button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    currentFilter = btn.dataset.filter;
+    document
+      .querySelectorAll("#filter-buttons button")
+      .forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  });
 });
 
 render();
