@@ -93,9 +93,9 @@ button {
 }
 
 #filter-buttons button.active {
-  background: #4a6cf7;
+  background: #7c3aed;
   color: #fff;
-  border-color: #4a6cf7;
+  border-color: #7c3aed;
 }
 
 #task-list {
